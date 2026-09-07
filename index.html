@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Narco City von Balu</title>
+<style>
+:root{
+  --bg:#171717;
+  --panel:#232323;
+  --panel-2:#2d2d2d;
+  --line:#4a4a4a;
+  --text:#f1f1f1;
+  --muted:#b9b9b9;
+  --gold:#d4af37;
+  --gold-2:#f0cf63;
+  --danger:#b14f4f;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:linear-gradient(135deg,#111,#242424);
+  color:var(--text);
+  min-height:100vh;
+}
+header{
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:rgba(20,20,20,.96);
+  border-bottom:2px solid var(--gold);
+  padding:22px 30px;
+  box-shadow:0 8px 25px rgba(0,0,0,.3);
+}
+header h1{
+  margin:0;
+  text-align:center;
+  color:var(--gold-2);
+  letter-spacing:1px;
+  font-size:clamp(28px,4vw,48px);
+}
+header p{
+  text-align:center;
+  margin:8px 0 0;
+  color:var(--muted);
+}
+main{max-width:1500px;margin:auto;padding:28px}
+.card{
+  background:var(--panel);
+  border:1px solid #3d3d3d;
+  border-top:3px solid var(--gold);
+  border-radius:14px;
+  padding:20px;
+  margin-bottom:28px;
+  box-shadow:0 12px 30px rgba(0,0,0,.2);
+}
+.card h2{
+  color:var(--gold-2);
+  margin-top:0;
+  border-bottom:1px solid var(--line);
+  padding-bottom:12px;
+}
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(150px,1fr));
+  gap:14px;
+}
+label{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+  font-size:13px;
+  color:var(--muted);
+  font-weight:700;
+}
+input,select,textarea,button{
+  font:inherit;
+}
+input,select,textarea{
+  width:100%;
+  background:#171717;
+  color:#fff;
+  border:1px solid #555;
+  border-radius:8px;
+  padding:11px 12px;
+  outline:none;
+}
+input:focus,select:focus,textarea:focus{
+  border-color:var(--gold);
+  box-shadow:0 0 0 2px rgba(212,175,55,.12);
+}
+textarea{resize:vertical;min-height:44px}
+.actions{
+  display:flex;
+  align-items:flex-end;
+}
+button{
+  cursor:pointer;
+  border:none;
+  border-radius:8px;
+  padding:11px 16px;
+  font-weight:800;
+}
+.btn-gold{
+  background:linear-gradient(135deg,var(--gold),var(--gold-2));
+  color:#171717;
+  width:100%;
+}
+.btn-gold:hover{filter:brightness(1.08)}
+.section-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+}
+.badge{
+  background:#171717;
+  color:var(--gold-2);
+  border:1px solid var(--gold);
+  border-radius:999px;
+  padding:4px 10px;
+  font-size:13px;
+}
+.table-wrap{
+  overflow-x:auto;
+  border-radius:10px;
+  border:1px solid #444;
+}
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:980px;
+}
+th{
+  background:#171717;
+  color:var(--gold-2);
+  text-align:left;
+  padding:13px;
+  border-bottom:2px solid var(--gold);
+}
+td{
+  padding:10px 12px;
+  border-bottom:1px solid #3e3e3e;
+  vertical-align:middle;
+}
+tr:nth-child(even){background:#282828}
+tr:hover{background:#303030}
+td[contenteditable="true"]{
+  outline:none;
+  min-width:120px;
+}
+td[contenteditable="true"]:focus{
+  background:#171717;
+  box-shadow:inset 0 0 0 1px var(--gold);
+}
+.vehicle-img{
+  width:90px;
+  height:58px;
+  border-radius:7px;
+  object-fit:cover;
+  display:block;
+  border:1px solid #555;
+  background:#111;
+}
+.img-cell{
+  width:120px;
+}
+.table-actions{
+  white-space:nowrap;
+}
+.small-btn{
+  padding:7px 10px;
+  margin:2px;
+  font-size:12px;
+}
+.edit-btn{
+  background:linear-gradient(135deg,var(--gold),var(--gold-2));
+  color:#171717;
+}
+.delete-btn{
+  background:var(--danger);
+  color:white;
+}
+.image-btn{
+  background:#444;
+  color:var(--gold-2);
+  border:1px solid #666;
+}
+.empty{
+  text-align:center;
+  color:#8f8f8f;
+  padding:26px;
+  font-style:italic;
+}
+.footer-note{
+  text-align:center;
+  color:#8b8b8b;
+  font-size:12px;
+  padding:10px 0 25px;
+}
+
+
+.summary-grid{
+  display:grid;
+  grid-template-columns:repeat(6,minmax(130px,1fr));
+  gap:12px;
+}
+.summary-box{
+  background:#171717;
+  border:1px solid #555;
+  border-bottom:3px solid var(--gold);
+  border-radius:10px;
+  padding:16px 12px;
+  text-align:center;
+}
+.summary-box .summary-label{
+  display:block;
+  color:var(--muted);
+  font-size:13px;
+  margin-bottom:7px;
+}
+.summary-box .summary-number{
+  display:block;
+  color:var(--gold-2);
+  font-size:28px;
+  font-weight:800;
+}
+.summary-box.total{
+  border-color:var(--gold);
+}
+@media(max-width:1000px){
+  .summary-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:600px){
+  .summary-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+.backup-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(220px,1fr));
+  gap:12px;
+}
+.btn-secondary{
+  background:#3a3a3a;
+  color:var(--gold-2);
+  border:1px solid #666;
+}
+.btn-secondary:hover{
+  border-color:var(--gold);
+  background:#454545;
+}
+.backup-note{
+  margin:14px 0 0;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.5;
+}
+@media(max-width:800px){
+  .backup-grid{grid-template-columns:1fr}
+}
+
+
+.modal-backdrop{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.72);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:100;
+  padding:20px;
+}
+.modal-backdrop.open{display:flex}
+.modal{
+  width:min(620px,100%);
+  background:var(--panel);
+  border:1px solid #555;
+  border-top:3px solid var(--gold);
+  border-radius:14px;
+  padding:22px;
+  box-shadow:0 20px 60px rgba(0,0,0,.5);
+}
+.modal h3{
+  margin-top:0;
+  color:var(--gold-2);
+}
+.modal-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+.modal-grid .full{grid-column:1/-1}
+.modal-actions{
+  display:flex;
+  gap:10px;
+  justify-content:flex-end;
+  margin-top:18px;
+}
+.modal-actions button{min-width:120px}
+.btn-cancel{
+  background:#444;
+  color:white;
+  border:1px solid #666;
+}
+@media(max-width:650px){
+  .modal-grid{grid-template-columns:1fr}
+  .modal-grid .full{grid-column:auto}
+}
+
+@media(max-width:1000px){
+  .form-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:600px){
+  main{padding:14px}
+  header{padding:18px 12px}
+  .form-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Narco City von Balu</h1>
+  <p>Fahrzeugverwaltung</p>
+</header>
+
+<main>
+  <section class="card">
+    <h2>Fahrzeug erfassen</h2>
+    <form id="vehicleForm" class="form-grid">
+      <label>
+        Bereich
+        <select id="category" required>
+          <option value="autos">Autos</option>
+          <option value="lagerfahrzeuge">Lagerfahrzeuge</option>
+          <option value="flugobjekte">Flugobjekte</option>
+          <option value="zweiraeder">Zweiräder</option>
+          <option value="sonstige">Sonstige Fahrzeuge</option>
+        </select>
+      </label>
+
+      <label>
+        Fahrzeugtyp
+        <input id="type" type="text" placeholder="z. B. Sultan RS" required />
+      </label>
+
+      <label>
+        Kennzeichen
+        <input id="plate" type="text" placeholder="z. B. NC-001" />
+      </label>
+
+      <label>
+        Informationen
+        <textarea id="info" placeholder="Zusätzliche Informationen"></textarea>
+      </label>
+
+      <label>
+        Bild
+        <input id="image" type="file" accept="image/*" />
+      </label>
+
+      <div class="actions">
+        <button class="btn-gold" type="submit">Eintrag hinzufügen</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="card">
+    <h2>Fahrzeugübersicht</h2>
+    <div class="summary-grid">
+      <div class="summary-box">
+        <span class="summary-label">Autos</span>
+        <span id="summary-autos" class="summary-number">0</span>
+      </div>
+      <div class="summary-box">
+        <span class="summary-label">Lagerfahrzeuge</span>
+        <span id="summary-lagerfahrzeuge" class="summary-number">0</span>
+      </div>
+      <div class="summary-box">
+        <span class="summary-label">Flugobjekte</span>
+        <span id="summary-flugobjekte" class="summary-number">0</span>
+      </div>
+      <div class="summary-box">
+        <span class="summary-label">Zweiräder</span>
+        <span id="summary-zweiraeder" class="summary-number">0</span>
+      </div>
+      <div class="summary-box">
+        <span class="summary-label">Sonstige Fahrzeuge</span>
+        <span id="summary-sonstige" class="summary-number">0</span>
+      </div>
+      <div class="summary-box total">
+        <span class="summary-label">Gesamt</span>
+        <span id="summary-total" class="summary-number">0</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Datensicherung</h2>
+    <div class="backup-grid">
+      <button id="exportBackup" class="btn-gold" type="button">Sicherung auf Festplatte speichern</button>
+      <button id="importBackup" class="btn-secondary" type="button">Sicherung von Festplatte laden</button>
+      <input id="backupFile" type="file" accept=".json,application/json" hidden>
+      <button id="exportCsv" class="btn-secondary" type="button">CSV exportieren</button>
+    </div>
+    <p class="backup-note">
+      Die Sicherungsdatei enthält alle Fahrzeugdaten und eingebetteten Bilder. 
+      Beim Laden einer Sicherung werden die aktuell gespeicherten Daten ersetzt.
+    </p>
+  </section>
+
+  <section class="card">
+    <div class="section-title">
+      <h2>Autos</h2>
+      <span id="count-autos" class="badge">0 Einträge</span>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Bild</th><th>Fahrzeugtyp</th><th>Kennzeichen</th><th>Informationen</th><th>Aktionen</th></tr></thead>
+        <tbody id="autos"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="section-title">
+      <h2>Lagerfahrzeuge</h2>
+      <span id="count-lagerfahrzeuge" class="badge">0 Einträge</span>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Bild</th><th>Fahrzeugtyp</th><th>Kennzeichen</th><th>Informationen</th><th>Aktionen</th></tr></thead>
+        <tbody id="lagerfahrzeuge"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="section-title">
+      <h2>Flugobjekte</h2>
+      <span id="count-flugobjekte" class="badge">0 Einträge</span>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Bild</th><th>Fahrzeugtyp</th><th>Kennzeichen</th><th>Informationen</th><th>Aktionen</th></tr></thead>
+        <tbody id="flugobjekte"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="section-title">
+      <h2>Zweiräder</h2>
+      <span id="count-zweiraeder" class="badge">0 Einträge</span>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Bild</th><th>Fahrzeugtyp</th><th>Kennzeichen</th><th>Informationen</th><th>Aktionen</th></tr></thead>
+        <tbody id="zweiraeder"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="section-title">
+      <h2>Sonstige Fahrzeuge</h2>
+      <span id="count-sonstige" class="badge">0 Einträge</span>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Bild</th><th>Fahrzeugtyp</th><th>Kennzeichen</th><th>Informationen</th><th>Aktionen</th></tr></thead>
+        <tbody id="sonstige"></tbody>
+      </table>
+    </div>
+  </section>
+
+
+  <div id="editModal" class="modal-backdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="editTitle">
+      <h3 id="editTitle">Fahrzeug bearbeiten</h3>
+      <div class="modal-grid">
+        <label>
+          Kategorie
+          <select id="editCategory">
+            <option value="autos">Autos</option>
+            <option value="lagerfahrzeuge">Lagerfahrzeuge</option>
+            <option value="flugobjekte">Flugobjekte</option>
+            <option value="zweiraeder">Zweiräder</option>
+            <option value="sonstige">Sonstige Fahrzeuge</option>
+          </select>
+        </label>
+
+        <label>
+          Fahrzeugtyp
+          <input id="editType" type="text">
+        </label>
+
+        <label>
+          Kennzeichen
+          <input id="editPlate" type="text">
+        </label>
+
+        <label class="full">
+          Informationen
+          <textarea id="editInfo"></textarea>
+        </label>
+      </div>
+
+      <div class="modal-actions">
+        <button id="cancelEdit" class="btn-cancel" type="button">Abbrechen</button>
+        <button id="saveEdit" class="btn-gold" type="button">Speichern</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-note">Änderungen werden automatisch im Browser gespeichert.</div>
+</main>
+
+<script>
+const STORAGE_KEY = "narcoCityVehicles_v1";
+let vehicles = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+
+const form = document.getElementById("vehicleForm");
+
+function save(){
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(vehicles));
+}
+
+function escapeHtml(text){
+  return String(text ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;");
+}
+
+function placeholder(){
+  return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(`
+    <svg xmlns="http://www.w3.org/2000/svg" width="180" height="116">
+      <rect width="100%" height="100%" fill="#171717"/>
+      <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle"
+            font-family="Arial" font-size="16" fill="#d4af37">Kein Bild</text>
+    </svg>
+  `);
+}
+
+function updateSummary(){
+  const categories = ["autos","lagerfahrzeuge","flugobjekte","zweiraeder","sonstige"];
+  categories.forEach(category => {
+    const count = vehicles.filter(v => v.category === category).length;
+    const el = document.getElementById("summary-" + category);
+    if(el) el.textContent = count;
+  });
+  document.getElementById("summary-total").textContent = vehicles.length;
+}
+
+function render(){
+  ["autos","lagerfahrzeuge","flugobjekte","zweiraeder","sonstige"].forEach(category => {
+    const tbody = document.getElementById(category);
+    const rows = vehicles.filter(v => v.category === category);
+    tbody.innerHTML = "";
+
+    if(!rows.length){
+      tbody.innerHTML = `<tr><td colspan="5" class="empty">Noch keine Einträge vorhanden.</td></tr>`;
+    } else {
+      rows.forEach(v => {
+        const tr = document.createElement("tr");
+        tr.dataset.id = v.id;
+        tr.innerHTML = `
+          <td class="img-cell">
+            <img class="vehicle-img" src="${v.image || placeholder()}" alt="Fahrzeugbild">
+            <input type="file" accept="image/*" hidden class="row-image-input">
+          </td>
+          <td contenteditable="true" data-field="type">${escapeHtml(v.type)}</td>
+          <td contenteditable="true" data-field="plate">${escapeHtml(v.plate)}</td>
+          <td contenteditable="true" data-field="info">${escapeHtml(v.info)}</td>
+          <td class="table-actions">
+            <button class="small-btn edit-btn" type="button" data-action="edit">Bearbeiten</button>
+            <button class="small-btn image-btn" type="button" data-action="image">Bild ändern</button>
+            <button class="small-btn delete-btn" type="button" data-action="delete">Löschen</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    document.getElementById("count-"+category).textContent =
+      rows.length + (rows.length === 1 ? " Eintrag" : " Einträge");
+  });
+  updateSummary();
+}
+
+form.addEventListener("submit", async (e)=>{
+  e.preventDefault();
+  const imageFile = document.getElementById("image").files[0];
+  let image = "";
+
+  if(imageFile){
+    image = await fileToDataUrl(imageFile);
+  }
+
+  vehicles.push({
+    id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now()),
+    category: document.getElementById("category").value,
+    type: document.getElementById("type").value.trim(),
+    plate: document.getElementById("plate").value.trim(),
+    info: document.getElementById("info").value.trim(),
+    image
+  });
+
+  save();
+  render();
+  form.reset();
+  document.getElementById("category").value = "autos";
+});
+
+function fileToDataUrl(file){
+  return new Promise((resolve,reject)=>{
+    const reader = new FileReader();
+    reader.onload = ()=>resolve(reader.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+document.addEventListener("input",(e)=>{
+  const cell = e.target.closest("td[contenteditable='true']");
+  if(!cell) return;
+  const tr = cell.closest("tr");
+  const item = vehicles.find(v => v.id === tr.dataset.id);
+  if(!item) return;
+  item[cell.dataset.field] = cell.innerText.trim();
+  save();
+});
+
+let editingId = null;
+
+function openEditModal(item){
+  editingId = item.id;
+  document.getElementById("editCategory").value = item.category;
+  document.getElementById("editType").value = item.type || "";
+  document.getElementById("editPlate").value = item.plate || "";
+  document.getElementById("editInfo").value = item.info || "";
+  const modal = document.getElementById("editModal");
+  modal.classList.add("open");
+  modal.setAttribute("aria-hidden","false");
+}
+
+function closeEditModal(){
+  editingId = null;
+  const modal = document.getElementById("editModal");
+  modal.classList.remove("open");
+  modal.setAttribute("aria-hidden","true");
+}
+
+document.addEventListener("click",(e)=>{
+  const btn = e.target.closest("button[data-action]");
+  if(btn){
+    const tr = btn.closest("tr");
+    const id = tr.dataset.id;
+    const item = vehicles.find(v => v.id === id);
+
+    if(btn.dataset.action === "delete"){
+      vehicles = vehicles.filter(v => v.id !== id);
+      save();
+      render();
+      return;
+    }
+
+    if(btn.dataset.action === "image"){
+      tr.querySelector(".row-image-input").click();
+      return;
+    }
+
+    if(btn.dataset.action === "edit" && item){
+      openEditModal(item);
+      return;
+    }
+  }
+
+  if(e.target.id === "editModal"){
+    closeEditModal();
+  }
+});
+
+document.getElementById("cancelEdit").addEventListener("click", closeEditModal);
+
+document.getElementById("saveEdit").addEventListener("click", ()=>{
+  if(!editingId) return;
+  const item = vehicles.find(v => v.id === editingId);
+  if(!item) return;
+
+  item.category = document.getElementById("editCategory").value;
+  item.type = document.getElementById("editType").value.trim();
+  item.plate = document.getElementById("editPlate").value.trim();
+  item.info = document.getElementById("editInfo").value.trim();
+
+  save();
+  render();
+  closeEditModal();
+});
+
+document.addEventListener("keydown",(e)=>{
+  if(e.key === "Escape" && document.getElementById("editModal").classList.contains("open")){
+    closeEditModal();
+  }
+});
+
+document.addEventListener("change", async (e)=>{
+  if(!e.target.classList.contains("row-image-input")) return;
+  const file = e.target.files[0];
+  if(!file) return;
+  const tr = e.target.closest("tr");
+  const item = vehicles.find(v => v.id === tr.dataset.id);
+  if(!item) return;
+  item.image = await fileToDataUrl(file);
+  save();
+  render();
+});
+
+
+function downloadTextFile(filename, text, mimeType){
+  const blob = new Blob([text], {type: mimeType});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+document.getElementById("exportBackup").addEventListener("click", ()=>{
+  const backup = {
+    app: "Narco City von Balu",
+    version: 1,
+    exportedAt: new Date().toISOString(),
+    vehicles
+  };
+
+  const date = new Date().toISOString().slice(0,10);
+  downloadTextFile(
+    `narco-city-sicherung-${date}.json`,
+    JSON.stringify(backup, null, 2),
+    "application/json"
+  );
+});
+
+document.getElementById("importBackup").addEventListener("click", ()=>{
+  document.getElementById("backupFile").click();
+});
+
+document.getElementById("backupFile").addEventListener("change", async (e)=>{
+  const file = e.target.files[0];
+  if(!file) return;
+
+  try{
+    const text = await file.text();
+    const data = JSON.parse(text);
+
+    if(!data || !Array.isArray(data.vehicles)){
+      throw new Error("Ungültige Sicherungsdatei");
+    }
+
+    const okay = confirm(
+      `Sicherung laden?\n\nGefundene Einträge: ${data.vehicles.length}\n\nDie aktuell gespeicherten Daten werden ersetzt.`
+    );
+    if(!okay){
+      e.target.value = "";
+      return;
+    }
+
+    vehicles = data.vehicles;
+    save();
+    render();
+    alert("Sicherung wurde erfolgreich geladen.");
+  }catch(err){
+    alert("Die Sicherungsdatei konnte nicht geladen werden.");
+  }finally{
+    e.target.value = "";
+  }
+});
+
+document.getElementById("exportCsv").addEventListener("click", ()=>{
+  const header = ["Bereich","Fahrzeugtyp","Kennzeichen","Informationen"];
+  const rows = vehicles.map(v => [
+    v.category === "autos" ? "Autos" :
+    v.category === "lagerfahrzeuge" ? "Lagerfahrzeuge" :
+    v.category === "flugobjekte" ? "Flugobjekte" :
+    v.category === "zweiraeder" ? "Zweiräder" : "Sonstige Fahrzeuge",
+    v.type || "",
+    v.plate || "",
+    v.info || ""
+  ]);
+
+  const escapeCsv = value => `"${String(value).replaceAll('"','""')}"`;
+  const csv = [header, ...rows]
+    .map(row => row.map(escapeCsv).join(";"))
+    .join("\n");
+
+  const date = new Date().toISOString().slice(0,10);
+  downloadTextFile(
+    `narco-city-fahrzeuge-${date}.csv`,
+    "\ufeff" + csv,
+    "text/csv;charset=utf-8"
+  );
+});
+
+render();
+</script>
+</body>
+</html>
