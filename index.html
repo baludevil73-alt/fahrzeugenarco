@@ -3,7 +3,12 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Narco City von Balu</title>
+<meta name="description" content="Narco City von Balu â€“ Fahrzeugverwaltung fÃ¼r Autos, Lagerfahrzeuge, Flugobjekte, ZweirÃ¤der und sonstige Fahrzeuge." />
+<meta name="theme-color" content="#171717" />
+<meta name="color-scheme" content="dark" />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23171717'/%3E%3Cpath d='M14 39h36l-4-13H20z' fill='%23d4af37'/%3E%3Ccircle cx='22' cy='43' r='5' fill='%23f0cf63'/%3E%3Ccircle cx='42' cy='43' r='5' fill='%23f0cf63'/%3E%3C/svg%3E" />
+<title>Narco City von Balu â€“ Fahrzeugverwaltung</title>
 <style>
 :root{
   --bg:#171717;
@@ -146,11 +151,11 @@ td{
 }
 tr:nth-child(even){background:#282828}
 tr:hover{background:#303030}
-td[contenteditable="true"]{
+td[contenteditable=true]{
   outline:none;
   min-width:120px;
 }
-td[contenteditable="true"]:focus{
+td[contenteditable=true]:focus{
   background:#171717;
   box-shadow:inset 0 0 0 1px var(--gold);
 }
@@ -334,7 +339,7 @@ td[contenteditable="true"]:focus{
           <option value="autos">Autos</option>
           <option value="lagerfahrzeuge">Lagerfahrzeuge</option>
           <option value="flugobjekte">Flugobjekte</option>
-          <option value="zweiraeder">Zweiräder</option>
+          <option value="zweiraeder">ZweirÃ¤der</option>
           <option value="sonstige">Sonstige Fahrzeuge</option>
         </select>
       </label>
@@ -351,7 +356,7 @@ td[contenteditable="true"]:focus{
 
       <label>
         Informationen
-        <textarea id="info" placeholder="Zusätzliche Informationen"></textarea>
+        <textarea id="info" placeholder="ZusÃ¤tzliche Informationen"></textarea>
       </label>
 
       <label>
@@ -360,13 +365,13 @@ td[contenteditable="true"]:focus{
       </label>
 
       <div class="actions">
-        <button class="btn-gold" type="submit">Eintrag hinzufügen</button>
+        <button class="btn-gold" type="submit">Eintrag hinzufÃ¼gen</button>
       </div>
     </form>
   </section>
 
   <section class="card">
-    <h2>Fahrzeugübersicht</h2>
+    <h2>FahrzeugÃ¼bersicht</h2>
     <div class="summary-grid">
       <div class="summary-box">
         <span class="summary-label">Autos</span>
@@ -381,7 +386,7 @@ td[contenteditable="true"]:focus{
         <span id="summary-flugobjekte" class="summary-number">0</span>
       </div>
       <div class="summary-box">
-        <span class="summary-label">Zweiräder</span>
+        <span class="summary-label">ZweirÃ¤der</span>
         <span id="summary-zweiraeder" class="summary-number">0</span>
       </div>
       <div class="summary-box">
@@ -404,7 +409,7 @@ td[contenteditable="true"]:focus{
       <button id="exportCsv" class="btn-secondary" type="button">CSV exportieren</button>
     </div>
     <p class="backup-note">
-      Die Sicherungsdatei enthält alle Fahrzeugdaten und eingebetteten Bilder. 
+      Die Sicherungsdatei enthÃ¤lt alle Fahrzeugdaten und eingebetteten Bilder. 
       Beim Laden einer Sicherung werden die aktuell gespeicherten Daten ersetzt.
     </p>
   </section>
@@ -412,7 +417,7 @@ td[contenteditable="true"]:focus{
   <section class="card">
     <div class="section-title">
       <h2>Autos</h2>
-      <span id="count-autos" class="badge">0 Einträge</span>
+      <span id="count-autos" class="badge">0 EintrÃ¤ge</span>
     </div>
     <div class="table-wrap">
       <table>
@@ -425,7 +430,7 @@ td[contenteditable="true"]:focus{
   <section class="card">
     <div class="section-title">
       <h2>Lagerfahrzeuge</h2>
-      <span id="count-lagerfahrzeuge" class="badge">0 Einträge</span>
+      <span id="count-lagerfahrzeuge" class="badge">0 EintrÃ¤ge</span>
     </div>
     <div class="table-wrap">
       <table>
@@ -438,7 +443,7 @@ td[contenteditable="true"]:focus{
   <section class="card">
     <div class="section-title">
       <h2>Flugobjekte</h2>
-      <span id="count-flugobjekte" class="badge">0 Einträge</span>
+      <span id="count-flugobjekte" class="badge">0 EintrÃ¤ge</span>
     </div>
     <div class="table-wrap">
       <table>
@@ -450,8 +455,8 @@ td[contenteditable="true"]:focus{
 
   <section class="card">
     <div class="section-title">
-      <h2>Zweiräder</h2>
-      <span id="count-zweiraeder" class="badge">0 Einträge</span>
+      <h2>ZweirÃ¤der</h2>
+      <span id="count-zweiraeder" class="badge">0 EintrÃ¤ge</span>
     </div>
     <div class="table-wrap">
       <table>
@@ -464,7 +469,7 @@ td[contenteditable="true"]:focus{
   <section class="card">
     <div class="section-title">
       <h2>Sonstige Fahrzeuge</h2>
-      <span id="count-sonstige" class="badge">0 Einträge</span>
+      <span id="count-sonstige" class="badge">0 EintrÃ¤ge</span>
     </div>
     <div class="table-wrap">
       <table>
@@ -485,7 +490,7 @@ td[contenteditable="true"]:focus{
             <option value="autos">Autos</option>
             <option value="lagerfahrzeuge">Lagerfahrzeuge</option>
             <option value="flugobjekte">Flugobjekte</option>
-            <option value="zweiraeder">Zweiräder</option>
+            <option value="zweiraeder">ZweirÃ¤der</option>
             <option value="sonstige">Sonstige Fahrzeuge</option>
           </select>
         </label>
@@ -513,12 +518,19 @@ td[contenteditable="true"]:focus{
     </div>
   </div>
 
-  <div class="footer-note">Änderungen werden automatisch im Browser gespeichert.</div>
+  <div class="footer-note">Ã„nderungen werden automatisch lokal in diesem Browser gespeichert.</div>
 </main>
 
 <script>
 const STORAGE_KEY = "narcoCityVehicles_v1";
-let vehicles = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+let vehicles = [];
+try {
+  const storedVehicles = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+  vehicles = Array.isArray(storedVehicles) ? storedVehicles : [];
+} catch (error) {
+  console.warn("Gespeicherte Fahrzeugdaten konnten nicht gelesen werden.", error);
+  vehicles = [];
+}
 
 const form = document.getElementById("vehicleForm");
 
@@ -561,7 +573,7 @@ function render(){
     tbody.innerHTML = "";
 
     if(!rows.length){
-      tbody.innerHTML = `<tr><td colspan="5" class="empty">Noch keine Einträge vorhanden.</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="5" class="empty">Noch keine EintrÃ¤ge vorhanden.</td></tr>`;
     } else {
       rows.forEach(v => {
         const tr = document.createElement("tr");
@@ -576,8 +588,8 @@ function render(){
           <td contenteditable="true" data-field="info">${escapeHtml(v.info)}</td>
           <td class="table-actions">
             <button class="small-btn edit-btn" type="button" data-action="edit">Bearbeiten</button>
-            <button class="small-btn image-btn" type="button" data-action="image">Bild ändern</button>
-            <button class="small-btn delete-btn" type="button" data-action="delete">Löschen</button>
+            <button class="small-btn image-btn" type="button" data-action="image">Bild Ã¤ndern</button>
+            <button class="small-btn delete-btn" type="button" data-action="delete">LÃ¶schen</button>
           </td>
         `;
         tbody.appendChild(tr);
@@ -585,7 +597,7 @@ function render(){
     }
 
     document.getElementById("count-"+category).textContent =
-      rows.length + (rows.length === 1 ? " Eintrag" : " Einträge");
+      rows.length + (rows.length === 1 ? " Eintrag" : " EintrÃ¤ge");
   });
   updateSummary();
 }
@@ -760,11 +772,11 @@ document.getElementById("backupFile").addEventListener("change", async (e)=>{
     const data = JSON.parse(text);
 
     if(!data || !Array.isArray(data.vehicles)){
-      throw new Error("Ungültige Sicherungsdatei");
+      throw new Error("UngÃ¼ltige Sicherungsdatei");
     }
 
     const okay = confirm(
-      `Sicherung laden?\n\nGefundene Einträge: ${data.vehicles.length}\n\nDie aktuell gespeicherten Daten werden ersetzt.`
+      `Sicherung laden?\n\nGefundene EintrÃ¤ge: ${data.vehicles.length}\n\nDie aktuell gespeicherten Daten werden ersetzt.`
     );
     if(!okay){
       e.target.value = "";
@@ -788,7 +800,7 @@ document.getElementById("exportCsv").addEventListener("click", ()=>{
     v.category === "autos" ? "Autos" :
     v.category === "lagerfahrzeuge" ? "Lagerfahrzeuge" :
     v.category === "flugobjekte" ? "Flugobjekte" :
-    v.category === "zweiraeder" ? "Zweiräder" : "Sonstige Fahrzeuge",
+    v.category === "zweiraeder" ? "ZweirÃ¤der" : "Sonstige Fahrzeuge",
     v.type || "",
     v.plate || "",
     v.info || ""
