@@ -3,29 +3,24 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Narco City von Balu â€“ Fahrzeugverwaltung fÃ¼r Autos, Lagerfahrzeuge, Flugobjekte, ZweirÃ¤der und sonstige Fahrzeuge." />
-<meta name="theme-color" content="#171717" />
-<meta name="color-scheme" content="dark" />
-<meta name="referrer" content="strict-origin-when-cross-origin" />
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23171717'/%3E%3Cpath d='M14 39h36l-4-13H20z' fill='%23d4af37'/%3E%3Ccircle cx='22' cy='43' r='5' fill='%23f0cf63'/%3E%3Ccircle cx='42' cy='43' r='5' fill='%23f0cf63'/%3E%3C/svg%3E" />
-<title>Narco City von Balu â€“ Fahrzeugverwaltung</title>
+<title>Narco City von Balu</title>
 <style>
 :root{
-  --bg:#171717;
-  --panel:#232323;
-  --panel-2:#2d2d2d;
-  --line:#4a4a4a;
+  --bg:#071a33;
+  --panel:#0b2748;
+  --panel-2:#10365f;
+  --line:#28527a;
   --text:#f1f1f1;
-  --muted:#b9b9b9;
-  --gold:#d4af37;
-  --gold-2:#f0cf63;
+  --muted:#b9c9dc;
+  --gold:#f2c94c;
+  --gold-2:#ffe27a;
   --danger:#b14f4f;
 }
 *{box-sizing:border-box}
 body{
   margin:0;
   font-family:Arial,Helvetica,sans-serif;
-  background:linear-gradient(135deg,#111,#242424);
+  background:linear-gradient(135deg,#041225,#0a2c52);
   color:var(--text);
   min-height:100vh;
 }
@@ -33,7 +28,7 @@ header{
   position:sticky;
   top:0;
   z-index:10;
-  background:rgba(20,20,20,.96);
+  background:rgba(5,24,48,.96);
   border-bottom:2px solid var(--gold);
   padding:22px 30px;
   box-shadow:0 8px 25px rgba(0,0,0,.3);
@@ -53,7 +48,7 @@ header p{
 main{max-width:1500px;margin:auto;padding:28px}
 .card{
   background:var(--panel);
-  border:1px solid #3d3d3d;
+  border:1px solid #21496f;
   border-top:3px solid var(--gold);
   border-radius:14px;
   padding:20px;
@@ -84,9 +79,9 @@ input,select,textarea,button{
 }
 input,select,textarea{
   width:100%;
-  background:#171717;
+  background:#071a33;
   color:#fff;
-  border:1px solid #555;
+  border:1px solid #315d86;
   border-radius:8px;
   padding:11px 12px;
   outline:none;
@@ -120,7 +115,7 @@ button{
   gap:10px;
 }
 .badge{
-  background:#171717;
+  background:#071a33;
   color:var(--gold-2);
   border:1px solid var(--gold);
   border-radius:999px;
@@ -138,7 +133,7 @@ table{
   min-width:980px;
 }
 th{
-  background:#171717;
+  background:#071a33;
   color:var(--gold-2);
   text-align:left;
   padding:13px;
@@ -146,17 +141,17 @@ th{
 }
 td{
   padding:10px 12px;
-  border-bottom:1px solid #3e3e3e;
+  border-bottom:1px solid #244b70;
   vertical-align:middle;
 }
-tr:nth-child(even){background:#282828}
-tr:hover{background:#303030}
+tr:nth-child(even){background:#0d2d50}
+tr:hover{background:#123a64}
 td[contenteditable=true]{
   outline:none;
   min-width:120px;
 }
 td[contenteditable=true]:focus{
-  background:#171717;
+  background:#071a33;
   box-shadow:inset 0 0 0 1px var(--gold);
 }
 .vehicle-img{
@@ -165,8 +160,8 @@ td[contenteditable=true]:focus{
   border-radius:7px;
   object-fit:cover;
   display:block;
-  border:1px solid #555;
-  background:#111;
+  border:1px solid #315d86;
+  background:#041225;
 }
 .img-cell{
   width:120px;
@@ -188,9 +183,9 @@ td[contenteditable=true]:focus{
   color:white;
 }
 .image-btn{
-  background:#444;
+  background:#163d65;
   color:var(--gold-2);
-  border:1px solid #666;
+  border:1px solid #3c668d;
 }
 .empty{
   text-align:center;
@@ -212,8 +207,8 @@ td[contenteditable=true]:focus{
   gap:12px;
 }
 .summary-box{
-  background:#171717;
-  border:1px solid #555;
+  background:#071a33;
+  border:1px solid #315d86;
   border-bottom:3px solid var(--gold);
   border-radius:10px;
   padding:16px 12px;
@@ -247,13 +242,13 @@ td[contenteditable=true]:focus{
   gap:12px;
 }
 .btn-secondary{
-  background:#3a3a3a;
+  background:#12375d;
   color:var(--gold-2);
-  border:1px solid #666;
+  border:1px solid #3c668d;
 }
 .btn-secondary:hover{
   border-color:var(--gold);
-  background:#454545;
+  background:#194a78;
 }
 .backup-note{
   margin:14px 0 0;
@@ -280,7 +275,7 @@ td[contenteditable=true]:focus{
 .modal{
   width:min(620px,100%);
   background:var(--panel);
-  border:1px solid #555;
+  border:1px solid #315d86;
   border-top:3px solid var(--gold);
   border-radius:14px;
   padding:22px;
@@ -304,9 +299,9 @@ td[contenteditable=true]:focus{
 }
 .modal-actions button{min-width:120px}
 .btn-cancel{
-  background:#444;
+  background:#163d65;
   color:white;
-  border:1px solid #666;
+  border:1px solid #3c668d;
 }
 @media(max-width:650px){
   .modal-grid{grid-template-columns:1fr}
@@ -518,19 +513,12 @@ td[contenteditable=true]:focus{
     </div>
   </div>
 
-  <div class="footer-note">Ã„nderungen werden automatisch lokal in diesem Browser gespeichert.</div>
+  <div class="footer-note">Ã„nderungen werden automatisch im Browser gespeichert.</div>
 </main>
 
 <script>
 const STORAGE_KEY = "narcoCityVehicles_v1";
-let vehicles = [];
-try {
-  const storedVehicles = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-  vehicles = Array.isArray(storedVehicles) ? storedVehicles : [];
-} catch (error) {
-  console.warn("Gespeicherte Fahrzeugdaten konnten nicht gelesen werden.", error);
-  vehicles = [];
-}
+let vehicles = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
 
 const form = document.getElementById("vehicleForm");
 
@@ -549,9 +537,9 @@ function escapeHtml(text){
 function placeholder(){
   return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(`
     <svg xmlns="http://www.w3.org/2000/svg" width="180" height="116">
-      <rect width="100%" height="100%" fill="#171717"/>
+      <rect width="100%" height="100%" fill="#071a33"/>
       <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle"
-            font-family="Arial" font-size="16" fill="#d4af37">Kein Bild</text>
+            font-family="Arial" font-size="16" fill="#f2c94c">Kein Bild</text>
     </svg>
   `);
 }
