@@ -334,7 +334,7 @@ td[contenteditable=true]:focus{
           <option value="autos">Autos</option>
           <option value="lagerfahrzeuge">Lagerfahrzeuge</option>
           <option value="flugobjekte">Flugobjekte</option>
-          <option value="zweiraeder">ZweirÃ¤der</option>
+          <option value="zweiraeder">Zweiräder</option>
           <option value="sonstige">Sonstige Fahrzeuge</option>
         </select>
       </label>
@@ -351,7 +351,7 @@ td[contenteditable=true]:focus{
 
       <label>
         Informationen
-        <textarea id="info" placeholder="ZusÃ¤tzliche Informationen"></textarea>
+        <textarea id="info" placeholder="Zusätzliche Informationen"></textarea>
       </label>
 
       <label>
@@ -360,13 +360,13 @@ td[contenteditable=true]:focus{
       </label>
 
       <div class="actions">
-        <button class="btn-gold" type="submit">Eintrag hinzufÃ¼gen</button>
+        <button class="btn-gold" type="submit">Eintrag hinzufügen</button>
       </div>
     </form>
   </section>
 
   <section class="card">
-    <h2>FahrzeugÃ¼bersicht</h2>
+    <h2>Fahrzeugübersicht</h2>
     <div class="summary-grid">
       <div class="summary-box">
         <span class="summary-label">Autos</span>
@@ -381,7 +381,7 @@ td[contenteditable=true]:focus{
         <span id="summary-flugobjekte" class="summary-number">0</span>
       </div>
       <div class="summary-box">
-        <span class="summary-label">ZweirÃ¤der</span>
+        <span class="summary-label">Zweiräder</span>
         <span id="summary-zweiraeder" class="summary-number">0</span>
       </div>
       <div class="summary-box">
@@ -404,7 +404,7 @@ td[contenteditable=true]:focus{
       <button id="exportCsv" class="btn-secondary" type="button">CSV exportieren</button>
     </div>
     <p class="backup-note">
-      Die Sicherungsdatei enthÃ¤lt alle Fahrzeugdaten und eingebetteten Bilder. 
+      Die Sicherungsdatei enthält alle Fahrzeugdaten und eingebetteten Bilder. 
       Beim Laden einer Sicherung werden die aktuell gespeicherten Daten ersetzt.
     </p>
   </section>
@@ -412,7 +412,7 @@ td[contenteditable=true]:focus{
   <section class="card">
     <div class="section-title">
       <h2>Autos</h2>
-      <span id="count-autos" class="badge">0 EintrÃ¤ge</span>
+      <span id="count-autos" class="badge">0 Einträge</span>
     </div>
     <div class="table-wrap">
       <table>
@@ -425,7 +425,7 @@ td[contenteditable=true]:focus{
   <section class="card">
     <div class="section-title">
       <h2>Lagerfahrzeuge</h2>
-      <span id="count-lagerfahrzeuge" class="badge">0 EintrÃ¤ge</span>
+      <span id="count-lagerfahrzeuge" class="badge">0 Einträge</span>
     </div>
     <div class="table-wrap">
       <table>
@@ -438,7 +438,7 @@ td[contenteditable=true]:focus{
   <section class="card">
     <div class="section-title">
       <h2>Flugobjekte</h2>
-      <span id="count-flugobjekte" class="badge">0 EintrÃ¤ge</span>
+      <span id="count-flugobjekte" class="badge">0 Einträge</span>
     </div>
     <div class="table-wrap">
       <table>
@@ -450,8 +450,8 @@ td[contenteditable=true]:focus{
 
   <section class="card">
     <div class="section-title">
-      <h2>ZweirÃ¤der</h2>
-      <span id="count-zweiraeder" class="badge">0 EintrÃ¤ge</span>
+      <h2>Zweiräder</h2>
+      <span id="count-zweiraeder" class="badge">0 Einträge</span>
     </div>
     <div class="table-wrap">
       <table>
@@ -464,7 +464,7 @@ td[contenteditable=true]:focus{
   <section class="card">
     <div class="section-title">
       <h2>Sonstige Fahrzeuge</h2>
-      <span id="count-sonstige" class="badge">0 EintrÃ¤ge</span>
+      <span id="count-sonstige" class="badge">0 Einträge</span>
     </div>
     <div class="table-wrap">
       <table>
@@ -485,7 +485,7 @@ td[contenteditable=true]:focus{
             <option value="autos">Autos</option>
             <option value="lagerfahrzeuge">Lagerfahrzeuge</option>
             <option value="flugobjekte">Flugobjekte</option>
-            <option value="zweiraeder">ZweirÃ¤der</option>
+            <option value="zweiraeder">Zweiräder</option>
             <option value="sonstige">Sonstige Fahrzeuge</option>
           </select>
         </label>
@@ -513,7 +513,7 @@ td[contenteditable=true]:focus{
     </div>
   </div>
 
-  <div class="footer-note">Ã„nderungen werden automatisch im Browser gespeichert.</div>
+  <div class="footer-note">Änderungen werden automatisch im Browser gespeichert.</div>
 </main>
 
 <script>
@@ -561,7 +561,7 @@ function render(){
     tbody.innerHTML = "";
 
     if(!rows.length){
-      tbody.innerHTML = `<tr><td colspan="5" class="empty">Noch keine EintrÃ¤ge vorhanden.</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="5" class="empty">Noch keine Einträge vorhanden.</td></tr>`;
     } else {
       rows.forEach(v => {
         const tr = document.createElement("tr");
@@ -576,8 +576,8 @@ function render(){
           <td contenteditable="true" data-field="info">${escapeHtml(v.info)}</td>
           <td class="table-actions">
             <button class="small-btn edit-btn" type="button" data-action="edit">Bearbeiten</button>
-            <button class="small-btn image-btn" type="button" data-action="image">Bild Ã¤ndern</button>
-            <button class="small-btn delete-btn" type="button" data-action="delete">LÃ¶schen</button>
+            <button class="small-btn image-btn" type="button" data-action="image">Bild ändern</button>
+            <button class="small-btn delete-btn" type="button" data-action="delete">Löschen</button>
           </td>
         `;
         tbody.appendChild(tr);
@@ -585,7 +585,7 @@ function render(){
     }
 
     document.getElementById("count-"+category).textContent =
-      rows.length + (rows.length === 1 ? " Eintrag" : " EintrÃ¤ge");
+      rows.length + (rows.length === 1 ? " Eintrag" : " Einträge");
   });
   updateSummary();
 }
@@ -760,11 +760,11 @@ document.getElementById("backupFile").addEventListener("change", async (e)=>{
     const data = JSON.parse(text);
 
     if(!data || !Array.isArray(data.vehicles)){
-      throw new Error("UngÃ¼ltige Sicherungsdatei");
+      throw new Error("Ungültige Sicherungsdatei");
     }
 
     const okay = confirm(
-      `Sicherung laden?\n\nGefundene EintrÃ¤ge: ${data.vehicles.length}\n\nDie aktuell gespeicherten Daten werden ersetzt.`
+      `Sicherung laden?\n\nGefundene Einträge: ${data.vehicles.length}\n\nDie aktuell gespeicherten Daten werden ersetzt.`
     );
     if(!okay){
       e.target.value = "";
@@ -788,7 +788,7 @@ document.getElementById("exportCsv").addEventListener("click", ()=>{
     v.category === "autos" ? "Autos" :
     v.category === "lagerfahrzeuge" ? "Lagerfahrzeuge" :
     v.category === "flugobjekte" ? "Flugobjekte" :
-    v.category === "zweiraeder" ? "ZweirÃ¤der" : "Sonstige Fahrzeuge",
+    v.category === "zweiraeder" ? "Zweiräder" : "Sonstige Fahrzeuge",
     v.type || "",
     v.plate || "",
     v.info || ""
