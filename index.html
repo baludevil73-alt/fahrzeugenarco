@@ -316,6 +316,13 @@ td[contenteditable=true]:focus{
   header{padding:18px 12px}
   .form-grid{grid-template-columns:1fr}
 }
+[hidden]{display:none!important}
+.access-card{max-width:540px;margin:32px auto}
+.access-card form,.password-form{display:grid;gap:14px}
+.access-note{color:var(--muted);font-size:13px;line-height:1.5}
+.status{color:var(--gold-2);min-height:1.2em}
+.price-input{min-width:140px}
+.password-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0}
 </style>
 </head>
 <body>
@@ -324,7 +331,35 @@ td[contenteditable=true]:focus{
   <p>Fahrzeugverwaltung</p>
 </header>
 
-<main>
+<main id="accessPanel" class="access-card">
+  <section class="card">
+    <h2 id="accessTitle">Liste freischalten</h2>
+    <p id="accessHelp">Bitte ein angelegtes Passwort eingeben.</p>
+    <form id="accessForm">
+      <label id="firstNameLabel" hidden>Bezeichnung<input id="firstName" maxlength="80" value="Hauptzugang"></label>
+      <label>Passwort<input id="accessPassword" type="password" autocomplete="current-password" required></label>
+      <label id="repeatLabel" hidden>Passwort wiederholen<input id="accessRepeat" type="password" autocomplete="new-password"></label>
+      <button id="accessSubmit" class="btn-gold" type="submit">Freischalten</button>
+    </form>
+    <p id="accessStatus" class="status" role="status"></p>
+    <p class="access-note">Lokale Browsersperre: Daten und Zugänge gelten nur in diesem Browser. Die Fahrzeugdaten sind nicht verschlüsselt. Kein Zugriffsschutz für eine öffentliche Website.</p>
+  </section>
+</main>
+<main id="appPanel" hidden>
+  <section class="card">
+    <div class="section-title"><h2>Zugang</h2><button id="lockList" type="button" class="btn-secondary">Liste sperren</button></div>
+    <details><summary>Passwörter verwalten</summary>
+      <p class="access-note">Jedes angelegte Passwort kann die gesamte Liste und die Passwortverwaltung freischalten. Mindestens ein Zugang bleibt erhalten. Passwörter werden nicht angezeigt und sind nicht Teil der Datensicherung.</p>
+      <form id="passwordForm" class="password-form">
+        <label>Bezeichnung<input id="passwordName" required maxlength="80" placeholder="z. B. Balu"></label>
+        <label>Neues Passwort (mindestens 8 Zeichen)<input id="newPassword" type="password" required minlength="8" autocomplete="new-password"></label>
+        <label>Passwort wiederholen<input id="repeatPassword" type="password" required minlength="8" autocomplete="new-password"></label>
+        <button type="submit" class="btn-gold">Passwort anlegen</button>
+      </form>
+      <p id="passwordStatus" class="status" role="status"></p>
+      <div id="passwordList"></div>
+    </details>
+  </section>
   <section class="card">
     <h2>Fahrzeug erfassen</h2>
     <form id="vehicleForm" class="form-grid">
@@ -349,6 +384,7 @@ td[contenteditable=true]:focus{
         <input id="plate" type="text" placeholder="z. B. NC-001" />
       </label>
 
+      <label>Kaufpreis<input id="purchasePrice" type="number" min="0" step="0.01" placeholder="z. B. 25000"></label>
       <label>
         Informationen
         <textarea id="info" placeholder="Zusätzliche Informationen"></textarea>
@@ -416,7 +452,7 @@ td[contenteditable=true]:focus{
     </div>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Bild</th><th>Fahrzeugtyp</th><th>Kennzeichen</th><th>Informationen</th><th>Aktionen</th></tr></thead>
+        <thead><tr><th>Bild</th><th>Fahrzeugtyp</th><th>Kennzeichen</th><th>Kaufpreis</th><th>Informationen</th><th>Aktionen</th></tr></thead>
         <tbody id="autos"></tbody>
       </table>
     </div>
@@ -429,7 +465,7 @@ td[contenteditable=true]:focus{
     </div>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Bild</th><th>Fahrzeugtyp</th><th>Kennzeichen</th><th>Informationen</th><th>Aktionen</th></tr></thead>
+        <thead><tr><th>Bild</th><th>Fahrzeugtyp</th><th>Kennzeichen</th><th>Kaufpreis</th><th>Informationen</th><th>Aktionen</th></tr></thead>
         <tbody id="lagerfahrzeuge"></tbody>
       </table>
     </div>
@@ -442,7 +478,7 @@ td[contenteditable=true]:focus{
     </div>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Bild</th><th>Fahrzeugtyp</th><th>Kennzeichen</th><th>Informationen</th><th>Aktionen</th></tr></thead>
+        <thead><tr><th>Bild</th><th>Fahrzeugtyp</th><th>Kennzeichen</th><th>Kaufpreis</th><th>Informationen</th><th>Aktionen</th></tr></thead>
         <tbody id="flugobjekte"></tbody>
       </table>
     </div>
@@ -455,7 +491,7 @@ td[contenteditable=true]:focus{
     </div>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Bild</th><th>Fahrzeugtyp</th><th>Kennzeichen</th><th>Informationen</th><th>Aktionen</th></tr></thead>
+        <thead><tr><th>Bild</th><th>Fahrzeugtyp</th><th>Kennzeichen</th><th>Kaufpreis</th><th>Informationen</th><th>Aktionen</th></tr></thead>
         <tbody id="zweiraeder"></tbody>
       </table>
     </div>
@@ -468,7 +504,7 @@ td[contenteditable=true]:focus{
     </div>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Bild</th><th>Fahrzeugtyp</th><th>Kennzeichen</th><th>Informationen</th><th>Aktionen</th></tr></thead>
+        <thead><tr><th>Bild</th><th>Fahrzeugtyp</th><th>Kennzeichen</th><th>Kaufpreis</th><th>Informationen</th><th>Aktionen</th></tr></thead>
         <tbody id="sonstige"></tbody>
       </table>
     </div>
@@ -500,6 +536,7 @@ td[contenteditable=true]:focus{
           <input id="editPlate" type="text">
         </label>
 
+        <label>Kaufpreis<input id="editPurchasePrice" type="number" min="0" step="0.01"></label>
         <label class="full">
           Informationen
           <textarea id="editInfo"></textarea>
@@ -518,7 +555,8 @@ td[contenteditable=true]:focus{
 
 <script>
 const STORAGE_KEY = "narcoCityVehicles_v1";
-let vehicles = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+let vehicles = [];
+let unlocked = false;
 
 const form = document.getElementById("vehicleForm");
 
@@ -561,18 +599,19 @@ function render(){
     tbody.innerHTML = "";
 
     if(!rows.length){
-      tbody.innerHTML = `<tr><td colspan="5" class="empty">Noch keine Einträge vorhanden.</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="6" class="empty">Noch keine Einträge vorhanden.</td></tr>`;
     } else {
       rows.forEach(v => {
         const tr = document.createElement("tr");
         tr.dataset.id = v.id;
         tr.innerHTML = `
           <td class="img-cell">
-            <img class="vehicle-img" src="${v.image || placeholder()}" alt="Fahrzeugbild">
+            <img class="vehicle-img" src="${escapeHtml(v.image || placeholder())}" alt="Fahrzeugbild">
             <input type="file" accept="image/*" hidden class="row-image-input">
           </td>
           <td contenteditable="true" data-field="type">${escapeHtml(v.type)}</td>
           <td contenteditable="true" data-field="plate">${escapeHtml(v.plate)}</td>
+          <td><input class="price-input" type="number" min="0" step="0.01" aria-label="Kaufpreis" value="${escapeHtml(v.purchasePrice ?? "")}"></td>
           <td contenteditable="true" data-field="info">${escapeHtml(v.info)}</td>
           <td class="table-actions">
             <button class="small-btn edit-btn" type="button" data-action="edit">Bearbeiten</button>
@@ -605,6 +644,7 @@ form.addEventListener("submit", async (e)=>{
     type: document.getElementById("type").value.trim(),
     plate: document.getElementById("plate").value.trim(),
     info: document.getElementById("info").value.trim(),
+    purchasePrice: readPrice(document.getElementById("purchasePrice")),
     image
   });
 
@@ -637,6 +677,7 @@ let editingId = null;
 
 function openEditModal(item){
   editingId = item.id;
+  document.getElementById("editPurchasePrice").value = item.purchasePrice ?? "";
   document.getElementById("editCategory").value = item.category;
   document.getElementById("editType").value = item.type || "";
   document.getElementById("editPlate").value = item.plate || "";
@@ -690,6 +731,9 @@ document.getElementById("saveEdit").addEventListener("click", ()=>{
   const item = vehicles.find(v => v.id === editingId);
   if(!item) return;
 
+  const priceInput = document.getElementById("editPurchasePrice");
+  if(!priceInput.reportValidity()) return;
+  item.purchasePrice = readPrice(priceInput);
   item.category = document.getElementById("editCategory").value;
   item.type = document.getElementById("editType").value.trim();
   item.plate = document.getElementById("editPlate").value.trim();
@@ -783,7 +827,7 @@ document.getElementById("backupFile").addEventListener("change", async (e)=>{
 });
 
 document.getElementById("exportCsv").addEventListener("click", ()=>{
-  const header = ["Bereich","Fahrzeugtyp","Kennzeichen","Informationen"];
+  const header = ["Bereich","Fahrzeugtyp","Kennzeichen","Kaufpreis","Informationen"];
   const rows = vehicles.map(v => [
     v.category === "autos" ? "Autos" :
     v.category === "lagerfahrzeuge" ? "Lagerfahrzeuge" :
@@ -791,6 +835,7 @@ document.getElementById("exportCsv").addEventListener("click", ()=>{
     v.category === "zweiraeder" ? "Zweiräder" : "Sonstige Fahrzeuge",
     v.type || "",
     v.plate || "",
+    v.purchasePrice ?? "",
     v.info || ""
   ]);
 
@@ -807,7 +852,128 @@ document.getElementById("exportCsv").addEventListener("click", ()=>{
   );
 });
 
-render();
+function readPrice(input){
+  return input.value === "" ? null : Number(input.value);
+}
+document.addEventListener("change", e => {
+  if(!unlocked || !e.target.matches(".price-input")) return;
+  const item = vehicles.find(v => v.id === e.target.closest("tr").dataset.id);
+  if(!item) return;
+  if(!e.target.reportValidity()) { e.target.value = item.purchasePrice ?? ""; return; }
+  item.purchasePrice = readPrice(e.target);
+  save();
+});
+
+const ACCESS_KEY = "narcoCityAccess_v1";
+let accounts = [];
+let accessReady = false;
+const el = id => document.getElementById(id);
+function updateAccess(){
+  const setup = accounts.length === 0;
+  el("accessTitle").textContent = setup ? "Erstes Passwort anlegen" : "Liste freischalten";
+  el("accessHelp").textContent = setup ? "Lege einen Zugang mit mindestens 8 Zeichen an. Bewahre das Passwort sicher auf." : "Bitte ein angelegtes Passwort eingeben.";
+  el("firstNameLabel").hidden = !setup;
+  el("repeatLabel").hidden = !setup;
+  el("accessRepeat").required = setup;
+  el("accessPassword").minLength = 8;
+  el("accessPassword").autocomplete = setup ? "new-password" : "current-password";
+  el("accessSubmit").textContent = setup ? "Passwort anlegen und öffnen" : "Freischalten";
+}
+async function passwordHash(password, salt){
+  const key = await crypto.subtle.importKey("raw", new TextEncoder().encode(password), "PBKDF2", false, ["deriveBits"]);
+  const bits = await crypto.subtle.deriveBits({name:"PBKDF2", salt:Uint8Array.from(atob(salt), c => c.charCodeAt(0)), iterations:210000, hash:"SHA-256"}, key, 256);
+  return btoa(String.fromCharCode(...new Uint8Array(bits)));
+}
+async function makeAccount(name, password){
+  const salt = btoa(String.fromCharCode(...crypto.getRandomValues(new Uint8Array(16))));
+  return {id:crypto.randomUUID(), name:name.trim() || "Hauptzugang", salt, hash:await passwordHash(password, salt)};
+}
+function persistAccounts(next){
+  localStorage.setItem(ACCESS_KEY, JSON.stringify(next));
+  accounts = next;
+}
+function renderAccounts(){
+  el("passwordList").replaceChildren();
+  accounts.forEach(account => {
+    const row = document.createElement("div");
+    row.className = "password-row";
+    const name = document.createElement("span");
+    name.textContent = account.name;
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "delete-btn small-btn";
+    button.textContent = "Entfernen";
+    button.disabled = accounts.length === 1;
+    button.addEventListener("click", () => {
+      if(!unlocked || accounts.length < 2 || !confirm(`Zugang „${account.name}“ entfernen?`)) return;
+      try { persistAccounts(accounts.filter(a => a.id !== account.id)); renderAccounts(); }
+      catch { el("passwordStatus").textContent = "Der Zugang konnte nicht entfernt werden."; }
+    });
+    row.append(name,button);
+    el("passwordList").append(row);
+  });
+}
+el("accessForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  if(!accessReady) return;
+  el("accessSubmit").disabled = true;
+  el("accessStatus").textContent = "Wird geprüft …";
+  try {
+    const password = el("accessPassword").value;
+    if(accounts.length === 0){
+      if(password.length < 8 || password !== el("accessRepeat").value) throw new Error("Passwörter müssen übereinstimmen und mindestens 8 Zeichen enthalten.");
+      persistAccounts([await makeAccount(el("firstName").value, password)]);
+    } else {
+      let valid = false;
+      for(const account of accounts){
+        if(await passwordHash(password, account.salt) === account.hash){ valid = true; break; }
+      }
+      if(!valid) throw new Error("Das Passwort ist nicht korrekt.");
+    }
+    const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+    if(!Array.isArray(stored)) throw new Error("Die gespeicherten Fahrzeugdaten konnten nicht gelesen werden.");
+    vehicles = stored;
+    unlocked = true;
+    render();
+    renderAccounts();
+    el("accessForm").reset();
+    el("accessStatus").textContent = "";
+    el("accessPanel").hidden = true;
+    el("appPanel").hidden = false;
+    el("lockList").focus();
+  } catch(error){ el("accessStatus").textContent = error.message || "Freischalten fehlgeschlagen."; }
+  finally { el("accessSubmit").disabled = false; }
+});
+el("passwordForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  if(!unlocked) return;
+  const button = e.submitter;
+  button.disabled = true;
+  try {
+    const password = el("newPassword").value;
+    if(password.length < 8 || password !== el("repeatPassword").value) throw new Error("Passwörter müssen übereinstimmen und mindestens 8 Zeichen enthalten.");
+    const account = await makeAccount(el("passwordName").value, password);
+    if(!unlocked) return;
+    persistAccounts([...accounts,account]);
+    renderAccounts();
+    el("passwordForm").reset();
+    el("passwordStatus").textContent = "Passwort wurde angelegt.";
+  } catch(error){ el("passwordStatus").textContent = error.message || "Speichern fehlgeschlagen."; }
+  finally { button.disabled = false; }
+});
+el("lockList").addEventListener("click", () => location.reload());
+window.addEventListener("storage", e => { if(e.key === ACCESS_KEY || e.key === null) location.reload(); });
+try {
+  if(!crypto.subtle) throw new Error("Die Passwortfunktion benötigt einen aktuellen Browser und HTTPS oder eine lokal geöffnete Datei.");
+  accounts = JSON.parse(localStorage.getItem(ACCESS_KEY) || "[]");
+  if(!Array.isArray(accounts) || accounts.some(a => !a.id || !a.name || !a.salt || !a.hash)) throw new Error("Die gespeicherten Zugangsdaten sind beschädigt.");
+  accessReady = true;
+  updateAccess();
+} catch(error){
+  el("accessSubmit").disabled = true;
+  el("accessStatus").textContent = error.message;
+}
+
 </script>
 </body>
 </html>
