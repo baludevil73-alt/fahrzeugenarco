@@ -333,8 +333,8 @@ td[contenteditable=true]:focus{
 
 <main id="accessPanel" class="access-card">
   <section class="card">
-    <h2 id="accessTitle">Liste freischalten</h2>
-    <p id="accessHelp">Bitte ein angelegtes Passwort eingeben.</p>
+    <h2 id="accessTitle">Bearbeitung freischalten</h2>
+    <p id="accessHelp">Die Liste ist frei sichtbar. Zum Bearbeiten bitte ein Passwort eingeben.</p>
     <form id="accessForm">
       <label id="firstNameLabel" hidden>Bezeichnung<input id="firstName" maxlength="80" value="Hauptzugang"></label>
       <label>Passwort<input id="accessPassword" type="password" autocomplete="current-password" required></label>
@@ -342,14 +342,14 @@ td[contenteditable=true]:focus{
       <button id="accessSubmit" class="btn-gold" type="submit">Freischalten</button>
     </form>
     <p id="accessStatus" class="status" role="status"></p>
-    <p class="access-note">Lokale Browsersperre: Daten und Zugänge gelten nur in diesem Browser. Die Fahrzeugdaten sind nicht verschlüsselt. Kein Zugriffsschutz für eine öffentliche Website.</p>
+    <p class="access-note">Lokale Bearbeitungssperre: Daten und Zugänge gelten nur in diesem Browser. Die Fahrzeugdaten sind nicht verschlüsselt. Kein Zugriffsschutz für eine öffentliche Website.</p>
   </section>
 </main>
-<main id="appPanel" hidden>
+<main id="appPanel">
   <section class="card">
-    <div class="section-title"><h2>Zugang</h2><button id="lockList" type="button" class="btn-secondary">Liste sperren</button></div>
-    <details><summary>Passwörter verwalten</summary>
-      <p class="access-note">Jedes angelegte Passwort kann die gesamte Liste und die Passwortverwaltung freischalten. Mindestens ein Zugang bleibt erhalten. Passwörter werden nicht angezeigt und sind nicht Teil der Datensicherung.</p>
+    <div class="section-title"><h2 id="modeLabel">Nur ansehen</h2><button id="lockList" hidden type="button" class="btn-secondary">Bearbeitung sperren</button></div>
+    <details data-editor-only hidden><summary>Passwörter verwalten</summary>
+      <p class="access-note">Jedes angelegte Passwort kann die Bearbeitung und die Passwortverwaltung freischalten. Mindestens ein Zugang bleibt erhalten. Passwörter werden nicht angezeigt und sind nicht Teil der Datensicherung.</p>
       <form id="passwordForm" class="password-form">
         <label>Bezeichnung<input id="passwordName" required maxlength="80" placeholder="z. B. Balu"></label>
         <label>Neues Passwort (mindestens 8 Zeichen)<input id="newPassword" type="password" required minlength="8" autocomplete="new-password"></label>
@@ -360,7 +360,7 @@ td[contenteditable=true]:focus{
       <div id="passwordList"></div>
     </details>
   </section>
-  <section class="card">
+  <section class="card" data-editor-only hidden>
     <h2>Fahrzeug erfassen</h2>
     <form id="vehicleForm" class="form-grid">
       <label>
@@ -431,7 +431,7 @@ td[contenteditable=true]:focus{
     </div>
   </section>
 
-  <section class="card">
+  <section class="card" data-editor-only hidden>
     <h2>Datensicherung</h2>
     <div class="backup-grid">
       <button id="exportBackup" class="btn-gold" type="button">Sicherung auf Festplatte speichern</button>
@@ -452,7 +452,7 @@ td[contenteditable=true]:focus{
     </div>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Bild</th><th>Fahrzeugtyp</th><th>Kennzeichen</th><th>Kaufpreis</th><th>Informationen</th><th>Aktionen</th></tr></thead>
+        <thead><tr><th>Bild</th><th>Fahrzeugtyp</th><th>Kennzeichen</th><th>Kaufpreis</th><th>Informationen</th><th data-editor-only hidden>Aktionen</th></tr></thead>
         <tbody id="autos"></tbody>
       </table>
     </div>
@@ -465,7 +465,7 @@ td[contenteditable=true]:focus{
     </div>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Bild</th><th>Fahrzeugtyp</th><th>Kennzeichen</th><th>Kaufpreis</th><th>Informationen</th><th>Aktionen</th></tr></thead>
+        <thead><tr><th>Bild</th><th>Fahrzeugtyp</th><th>Kennzeichen</th><th>Kaufpreis</th><th>Informationen</th><th data-editor-only hidden>Aktionen</th></tr></thead>
         <tbody id="lagerfahrzeuge"></tbody>
       </table>
     </div>
@@ -478,7 +478,7 @@ td[contenteditable=true]:focus{
     </div>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Bild</th><th>Fahrzeugtyp</th><th>Kennzeichen</th><th>Kaufpreis</th><th>Informationen</th><th>Aktionen</th></tr></thead>
+        <thead><tr><th>Bild</th><th>Fahrzeugtyp</th><th>Kennzeichen</th><th>Kaufpreis</th><th>Informationen</th><th data-editor-only hidden>Aktionen</th></tr></thead>
         <tbody id="flugobjekte"></tbody>
       </table>
     </div>
@@ -491,7 +491,7 @@ td[contenteditable=true]:focus{
     </div>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Bild</th><th>Fahrzeugtyp</th><th>Kennzeichen</th><th>Kaufpreis</th><th>Informationen</th><th>Aktionen</th></tr></thead>
+        <thead><tr><th>Bild</th><th>Fahrzeugtyp</th><th>Kennzeichen</th><th>Kaufpreis</th><th>Informationen</th><th data-editor-only hidden>Aktionen</th></tr></thead>
         <tbody id="zweiraeder"></tbody>
       </table>
     </div>
@@ -504,7 +504,7 @@ td[contenteditable=true]:focus{
     </div>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Bild</th><th>Fahrzeugtyp</th><th>Kennzeichen</th><th>Kaufpreis</th><th>Informationen</th><th>Aktionen</th></tr></thead>
+        <thead><tr><th>Bild</th><th>Fahrzeugtyp</th><th>Kennzeichen</th><th>Kaufpreis</th><th>Informationen</th><th data-editor-only hidden>Aktionen</th></tr></thead>
         <tbody id="sonstige"></tbody>
       </table>
     </div>
@@ -561,6 +561,7 @@ let unlocked = false;
 const form = document.getElementById("vehicleForm");
 
 function save(){
+  if(!unlocked) return;
   localStorage.setItem(STORAGE_KEY, JSON.stringify(vehicles));
 }
 
@@ -599,7 +600,7 @@ function render(){
     tbody.innerHTML = "";
 
     if(!rows.length){
-      tbody.innerHTML = `<tr><td colspan="6" class="empty">Noch keine Einträge vorhanden.</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="${unlocked ? 6 : 5}" class="empty">Noch keine Einträge vorhanden.</td></tr>`;
     } else {
       rows.forEach(v => {
         const tr = document.createElement("tr");
@@ -609,11 +610,11 @@ function render(){
             <img class="vehicle-img" src="${escapeHtml(v.image || placeholder())}" alt="Fahrzeugbild">
             <input type="file" accept="image/*" hidden class="row-image-input">
           </td>
-          <td contenteditable="true" data-field="type">${escapeHtml(v.type)}</td>
-          <td contenteditable="true" data-field="plate">${escapeHtml(v.plate)}</td>
-          <td><input class="price-input" type="number" min="0" step="0.01" aria-label="Kaufpreis" value="${escapeHtml(v.purchasePrice ?? "")}"></td>
-          <td contenteditable="true" data-field="info">${escapeHtml(v.info)}</td>
-          <td class="table-actions">
+          <td contenteditable="${unlocked}" data-field="type">${escapeHtml(v.type)}</td>
+          <td contenteditable="${unlocked}" data-field="plate">${escapeHtml(v.plate)}</td>
+          <td>${unlocked ? `<input class="price-input" type="number" min="0" step="0.01" aria-label="Kaufpreis" value="${escapeHtml(v.purchasePrice ?? "")}">` : escapeHtml(v.purchasePrice == null || v.purchasePrice === "" ? "—" : Number(v.purchasePrice).toLocaleString("de-DE", {maximumFractionDigits:2}))}</td>
+          <td contenteditable="${unlocked}" data-field="info">${escapeHtml(v.info)}</td>
+          <td class="table-actions" ${unlocked ? "" : "hidden"}>
             <button class="small-btn edit-btn" type="button" data-action="edit">Bearbeiten</button>
             <button class="small-btn image-btn" type="button" data-action="image">Bild ändern</button>
             <button class="small-btn delete-btn" type="button" data-action="delete">Löschen</button>
@@ -627,10 +628,12 @@ function render(){
       rows.length + (rows.length === 1 ? " Eintrag" : " Einträge");
   });
   updateSummary();
+  document.querySelectorAll("[data-editor-only]").forEach(node => { node.hidden = !unlocked; });
 }
 
 form.addEventListener("submit", async (e)=>{
   e.preventDefault();
+  if(!unlocked) return;
   const imageFile = document.getElementById("image").files[0];
   let image = "";
 
@@ -638,6 +641,7 @@ form.addEventListener("submit", async (e)=>{
     image = await fileToDataUrl(imageFile);
   }
 
+  if(!unlocked) return;
   vehicles.push({
     id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now()),
     category: document.getElementById("category").value,
@@ -664,6 +668,7 @@ function fileToDataUrl(file){
 }
 
 document.addEventListener("input",(e)=>{
+  if(!unlocked) return;
   const cell = e.target.closest("td[contenteditable='true']");
   if(!cell) return;
   const tr = cell.closest("tr");
@@ -676,6 +681,7 @@ document.addEventListener("input",(e)=>{
 let editingId = null;
 
 function openEditModal(item){
+  if(!unlocked) return;
   editingId = item.id;
   document.getElementById("editPurchasePrice").value = item.purchasePrice ?? "";
   document.getElementById("editCategory").value = item.category;
@@ -697,6 +703,7 @@ function closeEditModal(){
 document.addEventListener("click",(e)=>{
   const btn = e.target.closest("button[data-action]");
   if(btn){
+    if(!unlocked) return;
     const tr = btn.closest("tr");
     const id = tr.dataset.id;
     const item = vehicles.find(v => v.id === id);
@@ -727,7 +734,7 @@ document.addEventListener("click",(e)=>{
 document.getElementById("cancelEdit").addEventListener("click", closeEditModal);
 
 document.getElementById("saveEdit").addEventListener("click", ()=>{
-  if(!editingId) return;
+  if(!unlocked || !editingId) return;
   const item = vehicles.find(v => v.id === editingId);
   if(!item) return;
 
@@ -751,13 +758,15 @@ document.addEventListener("keydown",(e)=>{
 });
 
 document.addEventListener("change", async (e)=>{
-  if(!e.target.classList.contains("row-image-input")) return;
+  if(!unlocked || !e.target.classList.contains("row-image-input")) return;
   const file = e.target.files[0];
   if(!file) return;
   const tr = e.target.closest("tr");
   const item = vehicles.find(v => v.id === tr.dataset.id);
   if(!item) return;
-  item.image = await fileToDataUrl(file);
+  const image = await fileToDataUrl(file);
+  if(!unlocked) return;
+  item.image = image;
   save();
   render();
 });
@@ -776,6 +785,7 @@ function downloadTextFile(filename, text, mimeType){
 }
 
 document.getElementById("exportBackup").addEventListener("click", ()=>{
+  if(!unlocked) return;
   const backup = {
     app: "Narco City von Balu",
     version: 1,
@@ -792,10 +802,12 @@ document.getElementById("exportBackup").addEventListener("click", ()=>{
 });
 
 document.getElementById("importBackup").addEventListener("click", ()=>{
+  if(!unlocked) return;
   document.getElementById("backupFile").click();
 });
 
 document.getElementById("backupFile").addEventListener("change", async (e)=>{
+  if(!unlocked) return;
   const file = e.target.files[0];
   if(!file) return;
 
@@ -815,6 +827,7 @@ document.getElementById("backupFile").addEventListener("change", async (e)=>{
       return;
     }
 
+    if(!unlocked) return;
     vehicles = data.vehicles;
     save();
     render();
@@ -827,6 +840,7 @@ document.getElementById("backupFile").addEventListener("change", async (e)=>{
 });
 
 document.getElementById("exportCsv").addEventListener("click", ()=>{
+  if(!unlocked) return;
   const header = ["Bereich","Fahrzeugtyp","Kennzeichen","Kaufpreis","Informationen"];
   const rows = vehicles.map(v => [
     v.category === "autos" ? "Autos" :
@@ -870,14 +884,14 @@ let accessReady = false;
 const el = id => document.getElementById(id);
 function updateAccess(){
   const setup = accounts.length === 0;
-  el("accessTitle").textContent = setup ? "Erstes Passwort anlegen" : "Liste freischalten";
+  el("accessTitle").textContent = setup ? "Erstes Passwort anlegen" : "Bearbeitung freischalten";
   el("accessHelp").textContent = setup ? "Lege einen Zugang mit mindestens 8 Zeichen an. Bewahre das Passwort sicher auf." : "Bitte ein angelegtes Passwort eingeben.";
   el("firstNameLabel").hidden = !setup;
   el("repeatLabel").hidden = !setup;
   el("accessRepeat").required = setup;
   el("accessPassword").minLength = 8;
   el("accessPassword").autocomplete = setup ? "new-password" : "current-password";
-  el("accessSubmit").textContent = setup ? "Passwort anlegen und öffnen" : "Freischalten";
+  el("accessSubmit").textContent = setup ? "Passwort anlegen und bearbeiten" : "Freischalten";
 }
 async function passwordHash(password, salt){
   const key = await crypto.subtle.importKey("raw", new TextEncoder().encode(password), "PBKDF2", false, ["deriveBits"]);
@@ -934,6 +948,8 @@ el("accessForm").addEventListener("submit", async e => {
     if(!Array.isArray(stored)) throw new Error("Die gespeicherten Fahrzeugdaten konnten nicht gelesen werden.");
     vehicles = stored;
     unlocked = true;
+    el("lockList").hidden = false;
+    el("modeLabel").textContent = "Bearbeitung freigeschaltet";
     render();
     renderAccounts();
     el("accessForm").reset();
@@ -961,8 +977,26 @@ el("passwordForm").addEventListener("submit", async e => {
   } catch(error){ el("passwordStatus").textContent = error.message || "Speichern fehlgeschlagen."; }
   finally { button.disabled = false; }
 });
-el("lockList").addEventListener("click", () => location.reload());
+el("lockList").addEventListener("click", () => {
+  unlocked = false;
+  closeEditModal();
+  form.reset();
+  el("passwordForm").reset();
+  el("passwordList").replaceChildren();
+  el("passwordStatus").textContent = "";
+  el("accessPanel").hidden = false;
+  el("lockList").hidden = true;
+  el("modeLabel").textContent = "Nur ansehen";
+  updateAccess();
+  render();
+});
 window.addEventListener("storage", e => { if(e.key === ACCESS_KEY || e.key === null) location.reload(); });
+try {
+  const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+  if(!Array.isArray(stored)) throw new Error("Die gespeicherten Fahrzeugdaten konnten nicht gelesen werden.");
+  vehicles = stored;
+  render();
+} catch(error){ el("accessStatus").textContent = error.message; }
 try {
   if(!crypto.subtle) throw new Error("Die Passwortfunktion benötigt einen aktuellen Browser und HTTPS oder eine lokal geöffnete Datei.");
   accounts = JSON.parse(localStorage.getItem(ACCESS_KEY) || "[]");
