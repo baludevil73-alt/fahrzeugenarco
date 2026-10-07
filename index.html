@@ -340,6 +340,7 @@ td[contenteditable=true]:focus{
       <label>Passwort<input id="accessPassword" type="password" autocomplete="current-password" required></label>
       <label id="repeatLabel" hidden>Passwort wiederholen<input id="accessRepeat" type="password" autocomplete="new-password"></label>
       <button id="accessSubmit" class="btn-gold" type="submit">Freischalten</button>
+      <button id="forgotPassword" class="btn-secondary" type="button" hidden>Passwort vergessen?</button>
     </form>
     <p id="accessStatus" class="status" role="status"></p>
     <p class="access-note">Lokale Bearbeitungssperre: Daten und Zugänge gelten nur in diesem Browser. Die Fahrzeugdaten sind nicht verschlüsselt. Kein Zugriffsschutz für eine öffentliche Website.</p>
@@ -892,6 +893,7 @@ function updateAccess(){
   el("accessPassword").minLength = 8;
   el("accessPassword").autocomplete = setup ? "new-password" : "current-password";
   el("accessSubmit").textContent = setup ? "Passwort anlegen und bearbeiten" : "Freischalten";
+  el("forgotPassword").hidden = setup;
 }
 async function passwordHash(password, salt){
   const key = await crypto.subtle.importKey("raw", new TextEncoder().encode(password), "PBKDF2", false, ["deriveBits"]);
@@ -927,6 +929,25 @@ function renderAccounts(){
     el("passwordList").append(row);
   });
 }
+el("forgotPassword").addEventListener("click", () => {
+  if(accounts.length === 0) return;
+  const okay = confirm(
+    "Passwort wirklich zurücksetzen?\n\nDie gespeicherten Fahrzeugdaten bleiben erhalten. Nur die lokal gespeicherten Zugänge werden gelöscht. Anschließend kannst du sofort ein neues Passwort anlegen."
+  );
+  if(!okay) return;
+  try {
+    localStorage.removeItem(ACCESS_KEY);
+    accounts = [];
+    unlocked = false;
+    el("accessForm").reset();
+    el("accessStatus").textContent = "Zugang wurde zurückgesetzt. Lege jetzt ein neues Passwort an.";
+    updateAccess();
+    el("accessPassword").focus();
+  } catch(error) {
+    el("accessStatus").textContent = "Der Zugang konnte nicht zurückgesetzt werden.";
+  }
+});
+
 el("accessForm").addEventListener("submit", async e => {
   e.preventDefault();
   if(!accessReady) return;
